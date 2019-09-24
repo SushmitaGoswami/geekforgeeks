@@ -54,12 +54,6 @@ public class Main {
 //	    tree.reverseAlternateLevelsOfPerfectBinTreeRecursive();
 	    tree.formFullBinTreeFromInAndLevel(in, level);
 	    System.out.println("level order");
-	    tree.levelOrder();
-	    tree.populateInorderSuccesor();
-	    System.out.println("in order");
-	    tree.printInorderFollowingNextPtr();
-//	    System.out.println("pre order");
-//	    tree.preOrderWithoutRecursion();
-	    
+	    tree.levelOrder();  
 	}
 }

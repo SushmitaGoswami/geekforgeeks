@@ -290,6 +290,21 @@ public class BinaryTree<T extends Number> {
 			
 	}
 	
+	private int getnthNodeOfInorderTraversal(Node<T> node, int n, int count) {
+		if(node == null)
+			return count;
+		if(count<n) {
+			count = getnthNodeOfInorderTraversal(node.getLeft(), n, count);
+			count++;
+			if(count == n)
+				System.out.println("nth node = " + node.getData());
+			count = getnthNodeOfInorderTraversal(node.getRight(), n, count);
+		}
+		return count;
+		
+	}
+	
+	
 	/***
 	 * All the public api
 	 */
@@ -642,5 +657,43 @@ public class BinaryTree<T extends Number> {
 
 	public void printInorderFollowingNextPtr() {
 		printInorderFollowingNextPtr(root);
+	}
+
+	public void getnthNodeOfInorderTraversal(int n) {
+		getnthNodeOfInorderTraversal(root, n,0);
+	}
+
+	public void levelOrderInSprialForm() {
+		if(root == null)
+			return;
+		else if(root.getLeft() == null && root.getRight() == null) {
+			System.out.println(root.getData());
+			return;
+		}
+		Stack<Node<T>> stack = new Stack<>();
+		Queue<Node<T>> queue = new LinkedList<>();
+		stack.add(root);
+		while(!stack.isEmpty() || !queue.isEmpty()) {
+			if(!stack.isEmpty()) {
+				while(!stack.isEmpty()) {
+					Node<T>  node = stack.pop();
+					System.out.print(node.getData() + " , "); 
+					if(node.getLeft() !=null)
+						queue.add(node.getLeft());
+					if(node.getRight() !=null)
+						queue.add(node.getRight());
+				}
+			}
+			else {
+				while(!queue.isEmpty()) {
+					Node<T>  node = queue.poll();
+					System.out.print(node.getData() + " , "); 
+					if(node.getLeft() !=null)
+						stack.add(node.getLeft());
+					if(node.getRight() !=null)
+						stack.add(node.getRight());
+				}
+			}
+		}
 	}
 }
